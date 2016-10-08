@@ -1,6 +1,6 @@
 #!flask/bin/python
 from flask import Flask
-from flask import abort, jsonify, make_response, request, url_for
+from flask import abort, current_app, jsonify, make_response, redirect, request, url_for
 
 app = Flask(__name__)
 
@@ -19,7 +19,6 @@ queues = [
     }]
 
 jobs = []
-
 
 
 ''' Queues - methods for creating and deleting queues, retrieving next job to print, rearranging jobs '''
