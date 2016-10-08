@@ -4,12 +4,7 @@ from flask import abort, current_app, jsonify, make_response, redirect, request,
 
 app = Flask(__name__)
 
-JOB_STATUS = {
-    0: 'QUEUED',
-    1: 'IN_PROGRESS',
-    2: 'DONE',
-    3: 'ERROR'
-}
+JOB_STATUS = ['QUEUED', 'IN_PROGRESS', 'DONE', 'ERROR']
 
 queues = [
     {
@@ -44,7 +39,7 @@ def fetch_next_job(queue_id):
         if len(job_ids) > 0:
             for job_id in job_ids:
                 job = find_job(job_id)[0]
-                if job['status'] == 0: # return first 'QUEUED' status
+                if job['status'] == 'QUEUED': # return first 'QUEUED' status
                     return get_job(job_id)
 
     return jsonify({"job": None})
@@ -157,7 +152,7 @@ def submit_job():
         'id': jobs[-1]['id'] + 1 if len(jobs) > 0 else 1,
         'title': request.json['title'],
         'filename': request.json['filename'],
-        'status': 0,
+        'status': 'QUEUED',
         'queue_id': request.json['queue_id']
     }
 
@@ -187,7 +182,7 @@ def delete_job(job_id):
     return jsonify({'result': True})
 
 # Change job status
-@app.route('/3dp-api/jobs/<int:job_id>/new_status', methods=['PUT'])
+@app.route('/3dp-api/jobs/<int:job_id>/update_status', methods=['PUT'])
 def update_job_status(job_id):
     job = find_job(job_id)
     if len(job) == 0:
@@ -209,8 +204,6 @@ def make_public_job(job):
     for field in job:
         if field == 'id':
             new_job['uri'] = url_for('get_job', job_id=job['id'], _external=True)
-        elif field == 'status':
-            new_job[field] = JOB_STATUS[job[field]]
         else:
             new_job[field] = job[field]
     return new_job
@@ -246,4 +239,4 @@ def not_found(error):
 
 
 if __name__ == '__main__':
-    app.run(debug=True)
+    app.run(debug=False)
