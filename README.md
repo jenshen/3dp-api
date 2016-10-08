@@ -2,6 +2,8 @@
 
 NVBOTS Programming Exercise | Jenny Shen (jenshen@mit.edu) | October 8 2016
 
+Written using Python and Flask
+
 ## Running the app
 First clone this repository:
 ```
