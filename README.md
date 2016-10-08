@@ -16,7 +16,7 @@ Queues can be added and deleted.
 #### Displaying queues and jobs
 
 Display all queues:
-```python
+```
 curl http://localhost:5000/3dp-api/queues # Display all queues
 curl http://localhost:5000/3dp-api/jobs # Display all jobs
 
