@@ -19,13 +19,11 @@ Display all queues/jobs:
 ```
 curl http://localhost:5000/3dp-api/queues
 curl http://localhost:5000/3dp-api/jobs
-
 ```
 Displaying a specific queue/job
 ```
 curl http://localhost:5000/3dp-api/queues/[queue_id]
 curl http://localhost:5000/3dp-api/jobs/[job_id]
-
 ```
 
 #### Adding print jobs
