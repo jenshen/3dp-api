@@ -1,6 +1,6 @@
 # 3dp-api
 
-NVBOTS Programming Exercise | Jenny Shen (jenshen@mit.edu) | October 8 2016
+Jenny Shen (jenshen@mit.edu) | October 8 2016
 
 Written using Python and Flask
 
